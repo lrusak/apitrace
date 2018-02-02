@@ -20,6 +20,8 @@ include_directories (
   ${CMAKE_SOURCE_DIR}/common
   ${CMAKE_SOURCE_DIR}/helpers
   ${CMAKE_BINARY_DIR}/retrace/daemon
+  ${CMAKE_SOURCE_DIR}/retrace/daemon
+  ${CMAKE_SOURCE_DIR}/retrace/daemon/amd_gpa
   ${CMAKE_SOURCE_DIR}/retrace/daemon/gldispatch
   ${CMAKE_SOURCE_DIR}/thirdparty/md5
   )
@@ -105,6 +107,7 @@ if (NOT WIN32)
 endif()
 
 add_subdirectory (framestat)
+
 if (Qt5Widgets_FOUND)
   add_subdirectory (ui)
   add_subdirectory (bargraph)
@@ -114,3 +117,7 @@ if (ENABLE_WAFFLE AND Qt5Widgets_FOUND)
 endif ()
 add_subdirectory (server)
 add_subdirectory (gldispatch)
+
+if(EXISTS ${CMAKE_SOURCE_DIR}/retrace/daemon/amd_gpa/GPA)
+  add_subdirectory(amd_gpa)
+endif()
