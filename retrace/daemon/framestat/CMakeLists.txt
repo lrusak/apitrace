@@ -46,7 +46,7 @@ if (WIN32)
   set (GL_LIB opengl32)
   set (THREAD_LIB Ws2_32)
 else()
-  set (GL_LIB GL)
+  set (GL_LIB GLESv2)
   set (THREAD_LIB pthread dl)
 endif()
 
@@ -55,7 +55,7 @@ target_link_libraries(framestat
   retrace_gldispatch
   glretrace_common
   glhelpers
-  glproc_gl
+  glproc_egl
   ${GL_LIB}
   ${ws_lib}
   ${THREAD_LIB}

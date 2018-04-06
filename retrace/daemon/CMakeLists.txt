@@ -22,11 +22,7 @@ include(Lint.cmake)
 
 include(CustomProtoBuf.cmake)
 
-if (WIN32)
-set (Protobuf_PROTOC_EXECUTABLE protoc)
-else()
-set (Protobuf_PROTOC_EXECUTABLE ${CMAKE_BINARY_DIR}/protoc)
-endif()
+find_program(Protobuf_PROTOC_EXECUTABLE protoc)
 
 PROTOBUF_GENERATE_CPP(ProtoSources ProtoHeaders
   playback.proto
@@ -117,10 +113,8 @@ target_link_libraries(retrace_daemon
   retrace_context
   glretrace_common
   retrace_gldispatch
-  libprotobuf
+  ${PROTOBUF_LIBRARY}
   )
-
-add_dependencies(retrace_daemon protoc)
 
 if (NOT WIN32)
   Lint( RETRACE_SOURCES )

@@ -32,7 +32,7 @@
 
 #include <iostream>
 
-#include "waffle.h"
+#include <waffle-1/waffle.h>
 #include "glws.hpp"
 
 namespace glws {

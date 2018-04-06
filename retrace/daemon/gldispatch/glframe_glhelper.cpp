@@ -160,9 +160,9 @@ static void * _GetProcAddress(const char *name) {
   }
 #else
   static void *lib_handle = NULL;
-  lib_handle = dlopen("libGL.so", RTLD_LAZY | RTLD_GLOBAL);
+  lib_handle = dlopen("libEGL.so", RTLD_LAZY | RTLD_GLOBAL);
   lookup_fn = reinterpret_cast<GETPROCADDRESS>(dlsym(lib_handle,
-                                                     "glXGetProcAddress"));
+                                                     "eglGetProcAddress"));
 #endif
   assert(lookup_fn);
   void* ret = lookup_fn(name);

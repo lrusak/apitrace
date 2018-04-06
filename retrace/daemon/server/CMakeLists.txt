@@ -25,16 +25,18 @@ if (WIN32)
   set (GL_LIB opengl32)
   set (THREAD_LIB Ws2_32)
 else()
-  set (GL_LIB GL)
+  set (GL_LIB GLESv2)
   set (THREAD_LIB pthread dl)
 endif()
+
+find_library(PROTOBUF_LIBRARY NAMES libprotobuf protobuf)
 
 target_link_libraries(frameretrace_server
   retrace_daemon
   glretrace_common
   glhelpers
-  glproc_gl
-  libprotobuf
+  glproc_egl
+  ${PROTOBUF_LIBRARY}
   ${GL_LIB}
   ${ws_lib}
   ${THREAD_LIB}
